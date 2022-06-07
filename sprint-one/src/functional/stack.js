@@ -9,7 +9,7 @@ var Stack = function() {
   someInstance.push = function(value) {
     count++;
     storage[count] = value;
-    };
+  };
 
   someInstance.pop = function() {
     if (count > 0) {
