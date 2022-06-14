@@ -37,7 +37,7 @@ var LinkedList = function() {
     // }
     var temp = list.head;
     while (temp) {
-      if (temp === target) {
+      if (temp.value === target) { //needed temp.value
         return true;
       } else {
         temp = temp.next;
