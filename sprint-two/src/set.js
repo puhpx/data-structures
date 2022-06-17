@@ -15,6 +15,9 @@ setPrototype.contains = function(item) {
 };
 
 setPrototype.remove = function(item) {
+  if (this._storage[item] === undefined) {
+    return 'Element does not exist';
+  }
   delete this._storage[item];
 };
 

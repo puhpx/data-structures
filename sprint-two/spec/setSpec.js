@@ -24,4 +24,7 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should return "Element does not exist" if trying to remove a value that is not present', function() {
+    expect(set.remove('Mel Gibson')).to.equal('Element does not exist');
+  });
 });

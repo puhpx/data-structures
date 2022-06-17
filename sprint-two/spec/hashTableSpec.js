@@ -29,6 +29,13 @@ describe('hashTable', function() {
     expect(hashTable.retrieve('Bob')).to.equal('Barker');
   });
 
+  it('should not return overwritten values', function() {
+    hashTable.insert('Bob', 'Loblaw');
+    hashTable.insert('Bob', 'Barker');
+    hashTable.remove('Bob', 'Barker');
+    expect(hashTable.retrieve('Bob')).not.to.equal('Loblaw');
+  });
+
   it('should not contain values that were removed', function() {
     hashTable.insert('Steven', 'Tyler');
     hashTable.remove('Steven');

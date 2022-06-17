@@ -20,6 +20,9 @@ var BSTMethods = {
     var current = this;
 
     while (true) {
+      if (val === current.value) {
+        return undefined;
+      }
       if (val < current.value) {
         if (!current.left) {
           current.left = node;

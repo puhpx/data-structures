@@ -21,7 +21,7 @@ var LinkedList = function() {
 
   list.removeHead = function() {
     if (!list.head) {
-      return;
+      return 'List is Empty';
     } else {
       var rmvdHead = list.head;
       var newHead = list.head.next;
