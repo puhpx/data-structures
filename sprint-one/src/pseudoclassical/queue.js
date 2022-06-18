@@ -17,7 +17,7 @@ Queue.prototype.dequeue = function() {
   this.index--;
   if (this.index > 0) {
     for (var i = 1; i <= this.index; i++) {
-      this.storage[i] = this.storage[i+1];
+      this.storage[i] = this.storage[i + 1];
     }
   }
   return dequeuedStr;

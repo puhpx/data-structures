@@ -5,7 +5,21 @@ var Stack = function() {
   return newStack;
 };
 
-var stackMethods = {};
+var stackMethods = {
+  push: function(value) {
+    this.count++;
+    this.storage[this.count] = value;
+  },
+  pop: function() {
+    if (this.count > 0) {
+      this.count--;
+      return this.storage[this.count + 1];
+    }
+  },
+  size: function() {
+    return this.count;
+  }
+};
 
 stackMethods.push = function(value) {
   this.index++;

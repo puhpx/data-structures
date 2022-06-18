@@ -8,7 +8,7 @@ class Stack {
   push(value) {
     this.index++;
     this.storage[this.index] = value;
-  };
+  }
 
   pop() {
     if (this.index === 0) {
@@ -18,12 +18,12 @@ class Stack {
     delete this.storage[this.index];
     this.index--;
     return poppedStr;
-  };
+  }
 
   size() {
     return this.index;
-  };
+  }
 
 }
 
-  var newStack = new Stack;
+var newStack = new Stack;

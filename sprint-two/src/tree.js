@@ -1,36 +1,45 @@
 var Tree = function(value) {
   var newTree = {};
-  newTree.value = value;
-  newTree.children = null;
+  newTree._value = value;
+  newTree._parent = null;
+  newTree._children = [];
   _.extend(newTree, treeMethods);
   return newTree;
 };
 
 var treeMethods = {};
 
-treeMethods.addChild = function(value) {
-  if (!this.children) {
-    this.children = [];
-  }
-  this.children.push(Tree(value));
+treeMethods._addChild = function(value) {
+  //create a new node using Tree function
+  var newNode = Tree(value);
+  //push the new node into our children array with keyword this
+  newNode._parent = this;
+  this._children.push(newNode);
 };
 
-treeMethods.contains = function(target) {
-  var result = false;
-  var check = function(tree) {
-    if (tree.value === target) {
-      result = true;
-      return result;
-    }
-    if (tree.children) {
-      for (var i = 0; i < tree.children.length; i++) {
-        check(tree.children[i]);
+// treeMethods._removeFromParent = function(value, parentValue) {
+//   if (!this._contains(value) || !this._parent) {
+//     return undefined;
+//   }
+
+// };
+
+treeMethods._contains = function(target) {
+  if (this._value === target) {
+    return true;
+  }
+  if (this._children.length > 0) {
+    for (var i = 0; i < this._children.length; i++) {
+      if (this._children[i]._contains(target)) {
+        return true;
       }
     }
-  };
-  check(this);
-  return result;
+  }
+  return false;
 };
+
+
+
 
 
 /*

@@ -5,7 +5,23 @@ var Queue = function() {
   return newQueue;
 };
 
-var queueMethods = {};
+var queueMethods = {
+  enqueue: function(value) {
+    this.count++;
+    this.queueCount++;
+    this.storage[this.queueCount] = value;
+  },
+  dequeue: function() {
+    if (this.count > 0) {
+      this.count--;
+      this.queueFront++;
+      return this.storage[this.queueFront - 1];
+    }
+  },
+  size: function() {
+    return this.count;
+  }
+};
 
 queueMethods.enqueue = function(value) {
   this.index++;
@@ -21,7 +37,7 @@ queueMethods.dequeue = function() {
   this.index--;
   if (this.index > 0) {
     for (var i = 1; i <= this.index; i++) {
-      this.storage[i] = this.storage[i+1];
+      this.storage[i] = this.storage[i + 1];
     }
   }
   return dequeuedStr;
@@ -29,6 +45,6 @@ queueMethods.dequeue = function() {
 
 queueMethods.size = function() {
   return this.index;
-}
+};
 
 
