@@ -1,81 +1,81 @@
 var BinarySearchTree = function(value) {
   var newTree = {};
-  newTree.value = value;
-  newTree.left = null;
-  newTree.right = null;
+  newTree._value = value;
+  newTree._left = null;
+  newTree._right = null;
   _.extend(newTree, BSTMethods);
   return newTree;
 };
 
 var BSTMethods = {
 
-  insert: function(val) {
+  _insert: function(val) {
     var node = BinarySearchTree(val);
 
-    if (!this.value) {
-      this.value = val;
+    if (!this._value) {
+      this._value = val;
       return this;
     }
 
     var current = this;
 
     while (true) {
-      if (val === current.value) {
+      if (val === current._value) {
         return undefined;
       }
-      if (val < current.value) {
-        if (!current.left) {
-          current.left = node;
+      if (val < current._value) {
+        if (!current._left) {
+          current._left = node;
           return this;
         } else {
-          current = current.left;
+          current = current._left;
         }
-      } else if (val > current.value) {
-        if (!current.right) {
-          current.right = node;
+      } else if (val > current._value) {
+        if (!current._right) {
+          current._right = node;
           return this;
         } else {
-          current = current.right;
+          current = current._right;
         }
       }
     }
   },
 
-  contains: function(val) {
-    if (!this.value) {
+  _contains: function(val) {
+    if (!this._value) {
       return false;
     }
 
     var current = this;
 
     while (true) {
-      if (val === current.value) {
+      if (val === current._value) {
         return true;
       }
-      if (val < current.value) {
-        if (!current.left) {
+      if (val < current._value) {
+        if (!current._left) {
           return false;
         } else {
-          current = current.left;
+          current = current._left;
         }
-      } else if (val > current.value) {
-        if (!current.right) {
+      } else if (val > current._value) {
+        if (!current._right) {
           return false;
         } else {
-          current = current.right;
+          current = current._right;
         }
       }
     }
   },
 
-  depthFirstLog: function(cb) {
+  _depthFirstLog: function(cb) {
     var insideFunc = function (tree) {
-      cb(tree.value);
-      if (tree.left) {
-        insideFunc(tree.left);
+      cb(tree._value);
+      if (tree._left) {
+        insideFunc(tree._left);
       }
-      if (tree.right) {
-        insideFunc(tree.right);
+      if (tree._right) {
+        insideFunc(tree._right);
       }
     };
     insideFunc(this);
