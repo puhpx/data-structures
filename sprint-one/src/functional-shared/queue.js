@@ -2,7 +2,7 @@ var Queue = function() {
   var newQueue = {};
   newQueue.storage = {};
   newQueue.index = 0;
-  _.extend(newQueue, queueMethods)
+  _.extend(newQueue, queueMethods);
   return newQueue;
 };
 
@@ -30,4 +30,4 @@ queueMethods.dequeue = function() {
 
 queueMethods.size = function() {
   return this.index;
-}
+};
