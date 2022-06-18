@@ -38,6 +38,12 @@ describe('tree', function() {
     expect(tree._children[0]._children[0]._value).to.equal(6);
   });
 
+  it('should be able to return parent node', function() {
+    tree._addChild(5);
+    tree._children[0]._addChild(6);
+    expect(tree._children[0]._children[0]._parent._value).to.equal(5);
+  });
+
   it('should correctly detect nested children', function() {
     tree._addChild(5);
     tree._addChild(6);
