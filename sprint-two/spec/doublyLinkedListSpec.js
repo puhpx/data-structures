@@ -2,7 +2,7 @@ describe('doublyLinkedList', function() {
   var doublyLinkedList;
 
   beforeEach(function() {
-    doublyLinkedList = doublyLinkedList();
+    doublyLinkedList = DoublyLinkedList();
   });
 
   it('should have a head and tail', function() {
@@ -11,10 +11,10 @@ describe('doublyLinkedList', function() {
   });
 
   it('should have methods named "addToHead", "addToTail", "removeHead", "removeTail", and "contains"', function() {
-    expect(doublyLinkedList.addToHead).to.be.a('function');
-    expect(doublyLinkedList.addToTail).to.be.a('function');
-    expect(doublyLinkedList.removeHead).to.be.a('function');
-    expect(doublyLinkedList.removeTail).to.be.a('function');
+    expect(doublyLinkedList._addToHead).to.be.a('function');
+    expect(doublyLinkedList._addToTail).to.be.a('function');
+    expect(doublyLinkedList._removeHead).to.be.a('function');
+    expect(doublyLinkedList._removeTail).to.be.a('function');
     expect(doublyLinkedList._contains).to.be.a('function');
   });
 
@@ -22,7 +22,8 @@ describe('doublyLinkedList', function() {
     doublyLinkedList._addToTail(4);
     expect(doublyLinkedList._tail.value).to.equal(4);
     doublyLinkedList._addToTail(5);
-    expect(doublyLinkedList._tail.value).to.equal(5);
+    expect(doublyLinkedList._tail.prev.value).to.equal(4);
+    expect(doublyLinkedList._tail.prev.next.value).to.equal(5);
   });
 
   it('should remove the head from the list when removeHead is called', function() {
@@ -31,10 +32,12 @@ describe('doublyLinkedList', function() {
     expect(doublyLinkedList._head.value).to.equal(4);
     doublyLinkedList._removeHead();
     expect(doublyLinkedList._head.value).to.equal(5);
+    expect(doublyLinkedList._head.prev).to.equal(null);
   });
 
   it('should return the value of the former head when removeHead is called', function() {
     doublyLinkedList._addToTail(4);
+    // doublyLinkedList._addToTail(5);
     expect(doublyLinkedList._removeHead()).to.equal(4);
   });
 
@@ -60,9 +63,16 @@ describe('doublyLinkedList', function() {
   it('should return new head if addToHead is called', function() {
     doublyLinkedList._addToTail(4);
     doublyLinkedList._addToTail(5);
+    expect(doublyLinkedList._head.value).to.equal(4);
     doublyLinkedList._addToHead(3);
     expect(doublyLinkedList._head.value).to.equal(3);
   });
 
-
+  it('should remove the tail when removeTail is called', function() {
+    doublyLinkedList._addToTail(4);
+    doublyLinkedList._addToTail(5);
+    expect(doublyLinkedList._tail.value).to.equal(5);
+    doublyLinkedList._removeTail();
+    expect(doublyLinkedList._tail.value).to.equal(4);
+  });
 });
